@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\GoodRead.DataAccess\GoodRead.DataAccess.csproj" />
+    <ProjectReference Include="..\..\GoodRead.Services\GoodRead.Services.csproj" />
+    <ProjectReference Include="..\GoodRead.Utilities\GoodRead.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

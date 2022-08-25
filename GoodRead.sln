@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Services", "GoodRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.DataAccess", "GoodRead.DataAccess\GoodRead.DataAccess.csproj", "{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Utilities", "src\GoodRead.Utilities\GoodRead.Utilities.csproj", "{68F47755-02BB-47D1-AE89-78AB83403189}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68F47755-02BB-47D1-AE89-78AB83403189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F47755-02BB-47D1-AE89-78AB83403189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F47755-02BB-47D1-AE89-78AB83403189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F47755-02BB-47D1-AE89-78AB83403189}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{05E91325-7FF6-4EB1-AD80-A60FF14EF052} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
 		{A071BA9C-2277-40EA-91C5-8C53D95A05B2} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
 		{FA970B01-1514-4D1C-B75B-BB5D2EDFD589} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
+		{68F47755-02BB-47D1-AE89-78AB83403189} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {931A0599-D144-425F-B21D-4267522A322F}

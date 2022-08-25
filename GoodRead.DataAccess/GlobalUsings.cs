@@ -7,3 +7,6 @@ global using Microsoft.Extensions.DependencyInjection;
 global using System.ComponentModel.DataAnnotations;
 global using GoodRead.DataAccess.Entities;
 global using GoodRead.DataAccess.Common;
+global using GoodRead.DataAccess.Repositories.Implements;
+global using GoodRead.DataAccess.Repositories.Interfaces;
+global using System.Linq.Expressions;
