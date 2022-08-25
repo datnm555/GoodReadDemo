@@ -2,58 +2,57 @@
 using GoodRead.Utilities.Exceptions;
 using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
-namespace GoodRead.Api.Middleware
+namespace GoodRead.Api.Middleware;
+
+public class ExceptionHandlerMiddleware
 {
-    public class ExceptionHandlerMiddleware
+    private readonly RequestDelegate _next;
+
+    public ExceptionHandlerMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public ExceptionHandlerMiddleware(RequestDelegate next)
+    public async Task Invoke(HttpContext context)
+    {
+        try
         {
-            _next = next;
+            await _next(context);
+        }
+        catch (Exception ex)
+        {
+            await ConvertException(context, ex);
+        }
+    }
+
+    private Task ConvertException(HttpContext context, Exception exception)
+    {
+        HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
+        context.Request.ContentType = "application/json";
+        var result = string.Empty;
+
+        switch (exception)
+        {
+            case BadRequestException:
+                httpStatusCode = HttpStatusCode.BadRequest;
+                result = exception.Message;
+                break;
+            case NotFoundException:
+                httpStatusCode = HttpStatusCode.NotFound;
+                break;
+
+            case ValidationException:
+                httpStatusCode = HttpStatusCode.BadRequest;
+                //result = JsonConvert.SerializeObject(validationException.ValdationErrors);
+                break;
         }
 
-        public async Task Invoke(HttpContext context)
+        context.Response.StatusCode = (int)httpStatusCode;
+        if (result == string.Empty)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception ex)
-            {
-                await ConvertException(context, ex);
-            }
+            //result = JsonConvert.SerializeObject(new { error = exception.Message });
         }
 
-        private Task ConvertException(HttpContext context, Exception exception)
-        {
-            HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
-            context.Request.ContentType = "application/json";
-            var result = string.Empty;
-
-            switch (exception)
-            {
-                case BadRequestException:
-                    httpStatusCode = HttpStatusCode.BadRequest;
-                    result = exception.Message;
-                    break;
-                case NotFoundException:
-                    httpStatusCode = HttpStatusCode.NotFound;
-                    break;
-
-                case ValidationException:
-                    httpStatusCode = HttpStatusCode.BadRequest;
-                    //result = JsonConvert.SerializeObject(validationException.ValdationErrors);
-                    break;
-            }
-
-            context.Response.StatusCode = (int)httpStatusCode;
-            if (result == string.Empty)
-            {
-                //result = JsonConvert.SerializeObject(new { error = exception.Message });
-            }
-
-            return context.Response.WriteAsync(result);
-        }
+        return context.Response.WriteAsync(result);
     }
 }

@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoodRead.Utilities.Responses
+namespace GoodRead.Utilities.Responses;
+
+public class ErrorResponse
 {
-    public class ErrorResponse
-    {
-    }
 }

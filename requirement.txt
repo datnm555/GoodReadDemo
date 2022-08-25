@@ -1,0 +1,9 @@
+You’re building a backend service to support the goodreads mobile app. Please build a set of APIs that would allow a user to do the following activities:
+
+1. Add a book to the list of books they have read
+
+2. View a list of books they have completed reading
+
+3. Search for a book by name We’re looking only for APIs, no Frontend is needed. Please make sure that the APIs are RESTful.
+
+Please make reasonable assumptions if anything is not clear.

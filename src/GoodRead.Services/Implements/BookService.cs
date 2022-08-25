@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoodRead.Services.Implements
+namespace GoodRead.Services.Implements;
+
+public class BookService : IBookService
 {
-    public class BookService : IBookService
-    {
-    }
 }

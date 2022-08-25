@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GoodRead.DataAccess\GoodRead.DataAccess.csproj" />
-    <ProjectReference Include="..\..\GoodRead.Services\GoodRead.Services.csproj" />
+    <ProjectReference Include="..\GoodRead.DataAccess\GoodRead.DataAccess.csproj" />
+    <ProjectReference Include="..\GoodRead.Services\GoodRead.Services.csproj" />
     <ProjectReference Include="..\GoodRead.Utilities\GoodRead.Utilities.csproj" />
   </ItemGroup>
 

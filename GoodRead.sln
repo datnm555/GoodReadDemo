@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{85AE8B5F-1E8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Api", "src\GoodRead.Api\GoodRead.Api.csproj", "{05E91325-7FF6-4EB1-AD80-A60FF14EF052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Services", "GoodRead.Services\GoodRead.Services.csproj", "{A071BA9C-2277-40EA-91C5-8C53D95A05B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Services", "src\GoodRead.Services\GoodRead.Services.csproj", "{A071BA9C-2277-40EA-91C5-8C53D95A05B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.DataAccess", "GoodRead.DataAccess\GoodRead.DataAccess.csproj", "{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.DataAccess", "src\GoodRead.DataAccess\GoodRead.DataAccess.csproj", "{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Utilities", "src\GoodRead.Utilities\GoodRead.Utilities.csproj", "{68F47755-02BB-47D1-AE89-78AB83403189}"
 EndProject
