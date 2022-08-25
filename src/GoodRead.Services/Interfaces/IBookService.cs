@@ -9,6 +9,6 @@ public interface IBookService
 
     Task<BaseResponse<BookDto>> UpdateBookStatusAsync(UpdateBookStatusRequestDto requestDto);
 
-    Task<BaseResponse<BookDto>> GetCompletedRedingBooksAsync(int? userId);
+    Task<BaseResponse<BookDto>> GetCompletedReadingBooksAsync(int? userId);
 
 }

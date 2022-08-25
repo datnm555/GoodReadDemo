@@ -28,7 +28,7 @@ public class BookService : IBookService
         throw new NotImplementedException();
     }
 
-    public async Task<BaseResponse<BookDto>> GetCompletedRedingBooksAsync(int? userId)
+    public async Task<BaseResponse<BookDto>> GetCompletedReadingBooksAsync(int? userId)
     {
         throw new NotImplementedException();
     }

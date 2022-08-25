@@ -1,4 +1,6 @@
-﻿namespace GoodRead.DataAccess.Repositories.Implements;
+﻿using GoodRead.DataAccess.Entities;
+
+namespace GoodRead.DataAccess.Repositories.Implements;
 
 public class BookRepository : GenericRepository<Book>, IBookRepository
 {
