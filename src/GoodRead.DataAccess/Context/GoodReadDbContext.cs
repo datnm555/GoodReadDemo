@@ -11,9 +11,6 @@ public class GoodReadDbContext : DbContext
 
     public List<User> Users { get; set; }
     public List<Book> Books { get; set; }
-    public List<Author> Authors { get; set; }
-    public List<Publisher> Publishers { get; set; }
-    
 
     //Because this is sample so i did not create unit Of Work class for manage transaction and delegate dispose, so i override Savechange in this class
 
