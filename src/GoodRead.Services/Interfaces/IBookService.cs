@@ -5,12 +5,10 @@ namespace GoodRead.Services.Interfaces;
 
 public interface IBookService
 {
-    Task<BaseResponse<BookDto>> SearchBook(string name);
+    Task<BaseResponse<List<BookDto>>> GetBooksAsync(string name);
 
+    Task<BaseResponse<BookDto>> UpdateBookStatusAsync(UpdateBookStatusRequestDto requestDto);
 
-
-
-
-
+    Task<BaseResponse<BookDto>> GetCompletedRedingBooksAsync(int? userId);
 
 }

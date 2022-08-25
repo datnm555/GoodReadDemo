@@ -2,4 +2,9 @@
 
 public class Constants
 {
+    public enum BookStatus
+    {
+        Completed,
+        Reading
+    }
 }

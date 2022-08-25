@@ -12,7 +12,6 @@ public static class DataAccessRegistration
 
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<IBookRepository, BookRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
 }
