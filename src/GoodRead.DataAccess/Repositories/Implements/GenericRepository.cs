@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
+
 namespace GoodRead.DataAccess.Repositories.Implements;
 
 public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T : class

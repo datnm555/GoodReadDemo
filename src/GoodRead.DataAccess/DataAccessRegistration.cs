@@ -1,4 +1,6 @@
-﻿namespace GoodRead.DataAccess;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace GoodRead.DataAccess;
 
 public static class DataAccessRegistration
 {

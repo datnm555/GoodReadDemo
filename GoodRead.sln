@@ -5,13 +5,17 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Api", "src\GoodRead.Api\GoodRead.Api.csproj", "{05E91325-7FF6-4EB1-AD80-A60FF14EF052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodRead.Api", "src\GoodRead.Api\GoodRead.Api.csproj", "{05E91325-7FF6-4EB1-AD80-A60FF14EF052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Services", "src\GoodRead.Services\GoodRead.Services.csproj", "{A071BA9C-2277-40EA-91C5-8C53D95A05B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodRead.Services", "src\GoodRead.Services\GoodRead.Services.csproj", "{A071BA9C-2277-40EA-91C5-8C53D95A05B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.DataAccess", "src\GoodRead.DataAccess\GoodRead.DataAccess.csproj", "{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodRead.DataAccess", "src\GoodRead.DataAccess\GoodRead.DataAccess.csproj", "{FA970B01-1514-4D1C-B75B-BB5D2EDFD589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Utilities", "src\GoodRead.Utilities\GoodRead.Utilities.csproj", "{68F47755-02BB-47D1-AE89-78AB83403189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodRead.Utilities", "src\GoodRead.Utilities\GoodRead.Utilities.csproj", "{68F47755-02BB-47D1-AE89-78AB83403189}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B14839AA-8E6C-4269-A43B-11F5A1E6EDA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodRead.Test", "test\GoodRead.Test\GoodRead.Test.csproj", "{3597A628-2069-4469-8ABD-BB5472C9EF90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,10 @@ Global
 		{68F47755-02BB-47D1-AE89-78AB83403189}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68F47755-02BB-47D1-AE89-78AB83403189}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68F47755-02BB-47D1-AE89-78AB83403189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3597A628-2069-4469-8ABD-BB5472C9EF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3597A628-2069-4469-8ABD-BB5472C9EF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3597A628-2069-4469-8ABD-BB5472C9EF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3597A628-2069-4469-8ABD-BB5472C9EF90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{A071BA9C-2277-40EA-91C5-8C53D95A05B2} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
 		{FA970B01-1514-4D1C-B75B-BB5D2EDFD589} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
 		{68F47755-02BB-47D1-AE89-78AB83403189} = {85AE8B5F-1E81-44E3-80B7-0EAEA90E74F0}
+		{3597A628-2069-4469-8ABD-BB5472C9EF90} = {B14839AA-8E6C-4269-A43B-11F5A1E6EDA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {931A0599-D144-425F-B21D-4267522A322F}

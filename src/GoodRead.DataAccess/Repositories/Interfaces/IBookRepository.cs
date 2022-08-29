@@ -1,5 +1,7 @@
-﻿namespace GoodRead.DataAccess.Repositories.Interfaces;
+﻿using GoodRead.DataAccess.Entities;
 
-public interface IBookRepository
+namespace GoodRead.DataAccess.Repositories.Interfaces;
+
+public interface IBookRepository : IGenericRepository<Book>
 {
 }

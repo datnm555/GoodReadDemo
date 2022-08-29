@@ -1,11 +1,12 @@
-﻿using GoodRead.DataAccess.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using GoodRead.DataAccess.Entities;
 namespace GoodRead.DataAccess.Context;
+
 public class GoodReadDbContext : DbContext
 {
     public GoodReadDbContext(DbContextOptions<GoodReadDbContext> options) : base(options)
     {
     }
-
     public List<User> Users { get; set; }
     public List<Book> Books { get; set; }
     public List<ReadActivity> ReadActivities { get; set; }

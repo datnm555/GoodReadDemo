@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using GoodRead.Utilities.Exceptions;
+using Newtonsoft.Json;
 using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
 namespace GoodRead.Api.Middleware;
@@ -50,7 +51,7 @@ public class ExceptionHandlerMiddleware
         context.Response.StatusCode = (int)httpStatusCode;
         if (result == string.Empty)
         {
-            //result = JsonConvert.SerializeObject(new { error = exception.Message });
+            result = JsonConvert.SerializeObject(new { error = exception.Message });
         }
 
         return context.Response.WriteAsync(result);
