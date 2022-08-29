@@ -1,12 +1,8 @@
-﻿ using GoodRead.DataAccess.Entities;
+﻿using GoodRead.DataAccess.Entities;
 namespace GoodRead.DataAccess.Context;
 public class GoodReadDbContext : DbContext
 {
-    protected GoodReadDbContext()
-    {
-    }
-
-    public GoodReadDbContext(DbContextOptions options) : base(options)
+    public GoodReadDbContext(DbContextOptions<GoodReadDbContext> options) : base(options)
     {
     }
 

@@ -13,7 +13,8 @@ namespace GoodRead.DataAccess.Entities
         public User User { get; set; }
         public int BookId { get; set; }
         public Book Book { get; set; }
-        public bool Status { get; set; }
+        //0: NotReadYet; 1:Reading; 2:completed
+        public byte Status { get; set; }
 
     }
 }
