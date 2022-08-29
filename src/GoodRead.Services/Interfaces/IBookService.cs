@@ -1,4 +1,5 @@
 ﻿using GoodRead.Services.Models.Book;
+using GoodRead.Services.Models.UserRead;
 using GoodRead.Utilities.Responses;
 
 namespace GoodRead.Services.Interfaces;
@@ -11,6 +12,6 @@ public interface IBookService
 
     Task<BaseResponse<BookDto>> UpdateBookStatusAsync(UpdateBookStatusRequestDto requestDto);
 
-    Task<BaseResponse<BookDto>> GetCompletedReadingBooksAsync(int? userId);
+    Task<BaseResponse<UserReadCompleteDto>> GetCompletedReadingBooksAsync(int? userId);
 
 }

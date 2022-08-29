@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using GoodRead.Domain.Entities;
 using GoodRead.Domain.Repositories.Interfaces;
 using GoodRead.Services.Models.Book;
+using GoodRead.Services.Models.UserRead;
 using GoodRead.Utilities.Constants;
 using GoodRead.Utilities.Exceptions;
 using GoodRead.Utilities.Responses;
@@ -33,7 +34,6 @@ public class BookService : IBookService
     {
         var books = await _bookRepository.GetAllAsync();
         return new BaseResponse<List<BookDto>>(_mapper.Map<List<BookDto>>(books));
-
     }
 
     public async Task<BaseResponse<List<BookDto>>> GetBooksByNameAsync(string bookName)
@@ -41,7 +41,6 @@ public class BookService : IBookService
         var bookQueryable = _bookRepository.Find(x => x.Name.Contains(bookName));
         var books = await bookQueryable.ToListAsync();
         return new BaseResponse<List<BookDto>>(_mapper.Map<List<BookDto>>(books));
-
     }
 
     public async Task<BaseResponse<BookDto>> UpdateBookStatusAsync(UpdateBookStatusRequestDto requestDto)
@@ -49,15 +48,17 @@ public class BookService : IBookService
         throw new NotImplementedException();
     }
 
-    public async Task<BaseResponse<BookDto>> GetCompletedReadingBooksAsync(int? userId)
+    public async Task<BaseResponse<UserReadCompleteDto>> GetCompletedReadingBooksAsync(int? userId)
     {
         if (userId == null)
         {
-            throw new BadRequestException("userid is null");
+            throw new BadRequestException("Userid is null");
         }
 
-        var booksRead = _userReadRepository.Find(x => x.UserId == userId && x.Status == (int)Constants.BookStatus.Completed).DistinctBy(x => x.UserId).ToListAsync();
-
-        return new BaseResponse<BookDto>(new BookDto());
+        var booksRead = await _userReadRepository.Find(x => x.UserId == userId && x.Status == (int)Constants.BookStatus.Completed).Include(x=>x.Book).ToListAsync();
+        var userReadDtos = _mapper.Map<List<UserReadDto>>(booksRead);
+        var result = _mapper.Map<UserReadCompleteDto>(userReadDtos);
+        result.UserId = userId.Value;
+        return new BaseResponse<UserReadCompleteDto>(result);
     }
 }

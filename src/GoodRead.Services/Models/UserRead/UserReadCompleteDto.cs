@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GoodRead.Services.Models.Book;
 
 namespace GoodRead.Services.Models.UserRead
 {
-    public class UserReadDto
+    public class UserReadCompleteDto
     {
-        public int Id { get; set; }
-        public BookDto BookDto { get; set; }
+        public int UserId { get; set; }
+
+        public List<UserReadDto> UserReadDto { get; set; }
     }
 }

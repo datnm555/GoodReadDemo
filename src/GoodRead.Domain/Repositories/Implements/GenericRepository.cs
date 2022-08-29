@@ -19,7 +19,7 @@ public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T :
         DbSet = _dbContext.Set<T>();
     }
 
-    public IQueryable<T> Find(Expression<Func<T, bool>>? filter, Expression<Func<T, object>>[]? includeExpressions = null,  bool tracking = true)
+    public IQueryable<T> Find(Expression<Func<T, bool>>? filter, bool tracking = true)
     {
         var query = DbSet.AsQueryable();
 
@@ -31,11 +31,6 @@ public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T :
         if (filter != null)
         {
             query = query.Where(filter);
-        }
-
-        if (includeExpressions != null)
-        {
-            query = includeExpressions.Aggregate(query, (current, includeExpression) => current.Include(includeExpression));
         }
 
         return query;

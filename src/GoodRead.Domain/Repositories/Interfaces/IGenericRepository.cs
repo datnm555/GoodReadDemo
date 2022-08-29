@@ -4,7 +4,7 @@ namespace GoodRead.Domain.Repositories.Interfaces;
 
 public interface IGenericRepository<T> where T : class
 {
-    IQueryable<T> Find(Expression<Func<T, bool>>? filter, Expression<Func<T, object>>[]? includeExpressions = null, bool tracking = true);
+    IQueryable<T> Find(Expression<Func<T, bool>>? filter, bool tracking = true);
 
     Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>>? filter = null, string includeProperties = "");
 
