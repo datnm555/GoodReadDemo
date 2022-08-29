@@ -3,6 +3,5 @@
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using AutoMapper;
-global using GoodRead.DataAccess.Entities;
 global using GoodRead.Services.Implements;
 global using GoodRead.Services.Interfaces;

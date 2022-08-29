@@ -1,9 +1,4 @@
-﻿using System.Net;
-using GoodRead.Utilities.Exceptions;
-using Newtonsoft.Json;
-using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
-
-namespace GoodRead.Api.Middleware;
+﻿namespace GoodRead.Api.Middleware;
 
 public class ExceptionHandlerMiddleware
 {

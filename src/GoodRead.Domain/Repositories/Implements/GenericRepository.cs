@@ -1,62 +1,73 @@
 ﻿
 
+using System.Linq.Expressions;
+using GoodRead.Domain.Context;
+using GoodRead.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodRead.DataAccess.Repositories.Implements;
+namespace GoodRead.Domain.Repositories.Implements;
 
 public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T : class
 {
-    private readonly GoodReadDbContext _dbContext;
-    private readonly DbSet<T> _dbSet;
+    private readonly ApplicationDbContext _dbContext;
+    protected DbSet<T> DbSet;
 
 
-    public GenericRepository(GoodReadDbContext dbContext)
+    public GenericRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-        _dbSet = _dbContext.Set<T>();
+        DbSet = _dbContext.Set<T>();
     }
 
-    public IQueryable<T> Find(Expression<Func<T, bool>>? filter)
+    public IQueryable<T> Find(Expression<Func<T, bool>>? filter, Expression<Func<T, object>>[]? includeExpressions = null,  bool tracking = true)
     {
-        IQueryable<T> query = _dbSet;
+        var query = DbSet.AsQueryable();
+
+        if (!tracking)
+        {
+            query = query.AsNoTracking();
+        }
 
         if (filter != null)
         {
             query = query.Where(filter);
+        }
+
+        if (includeExpressions != null)
+        {
+            query = includeExpressions.Aggregate(query, (current, includeExpression) => current.Include(includeExpression));
         }
 
         return query;
     }
 
-    public IEnumerable<T> Get(Expression<Func<T, bool>>? filter = null, string includeProperties = "")
+    public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>>? filter = null, string includeProperties = "")
     {
-        IQueryable<T> query = _dbSet;
+        IQueryable<T> query = DbSet;
 
         if (filter != null)
         {
             query = query.Where(filter);
         }
 
-        foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-        {
-            query = query.Include(includeProperty);
-        }
-        return query.ToList();
+        query = includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
+        return await query.ToListAsync();
     }
 
     public async Task<T> GetByIdAsync(int id)
     {
-        return await _dbSet.FindAsync(id);
+        return await DbSet.FindAsync(id);
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _dbSet.ToListAsync();
+        return await DbSet.ToListAsync();
     }
 
     public async Task<T> AddAsync(T entity)
     {
-        await _dbSet.AddAsync(entity);
+        await DbSet.AddAsync(entity);
         await _dbContext.SaveChangesAsync();
 
         return entity;
@@ -64,7 +75,7 @@ public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T :
 
     public async Task<T> UpdateAsync(T entity)
     {
-        _dbSet.Attach(entity);
+        DbSet.Attach(entity);
         _dbContext.Entry(entity).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
         return entity;
@@ -72,7 +83,7 @@ public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T :
 
     public async Task DeleteAsync(T entity)
     {
-        _dbSet.Remove(entity);
+        DbSet.Remove(entity);
         await _dbContext.SaveChangesAsync();
     }
 

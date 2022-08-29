@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿namespace GoodRead.Api.Common;
 
-namespace GoodRead.Api.Common;
-
+/// <summary>
+/// Base api controller
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class ApiControllerBase : ControllerBase

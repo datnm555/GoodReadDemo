@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoodRead.DataAccess\GoodRead.DataAccess.csproj" />
+    <ProjectReference Include="..\GoodRead.Domain\GoodRead.Domain.csproj" />
     <ProjectReference Include="..\GoodRead.Utilities\GoodRead.Utilities.csproj" />
   </ItemGroup>
 
