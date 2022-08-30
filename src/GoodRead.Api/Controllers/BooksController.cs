@@ -1,4 +1,7 @@
 ﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+using GoodRead.Services.Models.UserRead;
+
 namespace GoodRead.Api.Controllers;
 
 /// <summary>
@@ -51,15 +54,26 @@ public class BooksController : ControllerBase
     {
         return Ok(await _bookService.GetCompletedReadingBooksAsync(userId));
     }
+    
+    /// <summary>
+    /// update book status 
+    /// </summary>
+    /// <param name="requestDto"></param>
+    /// <returns></returns>
+    [HttpPost("create-user-read-book")]
+    public async Task<IActionResult> CreateUserReadBook([FromBody] AddUserReadDto requestDto)
+    {
+        return Ok(await _bookService.CreateUserReadBook(requestDto));
+    }
 
     /// <summary>
     /// update book status 
     /// </summary>
     /// <param name="requestDto"></param>
     /// <returns></returns>
-    [HttpPut("update-book-status")]
-    public async Task<IActionResult> UpdateBookStatus([FromBody] UpdateBookStatusRequestDto requestDto)
+    [HttpPut("update-book-status/{id}")]
+    public async Task<IActionResult> UpdateBookStatus(int id, [FromBody] UpdateBookStatusRequestDto requestDto)
     {
-        return Ok(await _bookService.UpdateBookStatusAsync(requestDto));
+        return Ok(await _bookService.UpdateBookStatusAsync(id,requestDto));
     }
 }

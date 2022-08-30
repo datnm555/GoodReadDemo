@@ -12,5 +12,7 @@ public class MappingProfile : Profile
         CreateMap<Book, BookDto>().ReverseMap();
         CreateMap<UserRead, UserReadDto>().ReverseMap();
         CreateMap<UserReadDto, UserReadCompleteDto>().ReverseMap();
+        CreateMap<UserRead, AddUserReadDto>().ReverseMap();
+        CreateMap<UserRead, UpdateBookStatusRequestDto>().ReverseMap();
     }
 }

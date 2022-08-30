@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GoodRead.Domain.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace GoodRead.Domain.Context
 {
@@ -15,8 +16,8 @@ namespace GoodRead.Domain.Context
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Book> Books{ get; set; }
-        public DbSet<UserRead> UserReads{ get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<UserRead> UserReads { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -34,6 +35,7 @@ namespace GoodRead.Domain.Context
                         break;
                 }
             }
+
             return base.SaveChangesAsync(cancellationToken);
         }
     }

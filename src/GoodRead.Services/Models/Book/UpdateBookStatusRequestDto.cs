@@ -8,10 +8,6 @@ namespace GoodRead.Services.Models.Book
 {
     public class UpdateBookStatusRequestDto
     {
-        public int UserId { get; set; }
-
-        public int BookId { get; set; }
-
-        public  bool Status { get; set; }
+        public byte Status { get; set; }
     }
 }

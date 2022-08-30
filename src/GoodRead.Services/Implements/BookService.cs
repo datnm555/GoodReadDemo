@@ -43,9 +43,12 @@ public class BookService : IBookService
         return new BaseResponse<List<BookDto>>(_mapper.Map<List<BookDto>>(books));
     }
 
-    public async Task<BaseResponse<BookDto>> UpdateBookStatusAsync(UpdateBookStatusRequestDto requestDto)
+    public async Task<BaseResponse<UserReadDto>> UpdateBookStatusAsync(int id,UpdateBookStatusRequestDto requestDto)
     {
-        throw new NotImplementedException();
+        var userRead = await _userReadRepository.GetByIdAsync(id);
+        userRead.Status = requestDto.Status;
+        await _userReadRepository.AddAsync(userRead);
+        return new BaseResponse<UserReadDto>(_mapper.Map<UserReadDto>(userRead));
     }
 
     public async Task<BaseResponse<UserReadCompleteDto>> GetCompletedReadingBooksAsync(int? userId)
@@ -55,10 +58,20 @@ public class BookService : IBookService
             throw new BadRequestException("Userid is null");
         }
 
-        var booksRead = await _userReadRepository.Find(x => x.UserId == userId && x.Status == (int)Constants.BookStatus.Completed).Include(x=>x.Book).ToListAsync();
+        var booksRead = await _userReadRepository
+            .Find(x => x.UserId == userId && x.Status == (int)Constants.BookStatus.Completed)
+            .Include(x => x.Book)
+            .ToListAsync();
         var userReadDtos = _mapper.Map<List<UserReadDto>>(booksRead);
         var result = _mapper.Map<UserReadCompleteDto>(userReadDtos);
         result.UserId = userId.Value;
         return new BaseResponse<UserReadCompleteDto>(result);
+    }
+
+    public async Task<BaseResponse<UserReadDto>> CreateUserReadBook(AddUserReadDto requestDto)
+    {
+        var userRead = _mapper.Map<UserRead>(requestDto);
+        var result = await _userReadRepository.AddAsync(userRead);
+        return new BaseResponse<UserReadDto>(_mapper.Map<UserReadDto>(result));
     }
 }
