@@ -36,10 +36,10 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//using var scope = app.Services.CreateScope();
-//var service = scope.ServiceProvider;
-//var context = service.GetRequiredService<ApplicationDbContext>();
-//SeedData.AddDataInMemory(context);
+using var scope = app.Services.CreateScope();
+var service = scope.ServiceProvider;
+var context = service.GetRequiredService<ApplicationDbContext>();
+SeedData.AddDataInMemory(context);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,4 +60,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
 public partial class Program { }
