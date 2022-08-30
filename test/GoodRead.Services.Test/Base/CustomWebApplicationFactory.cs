@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Net.Http;
+using System.Reflection;
 using GoodRead.Domain.Context;
+using GoodRead.Domain.Repositories.Implements;
+using GoodRead.Domain.Repositories.Interfaces;
+using GoodRead.Services.Implements;
+using GoodRead.Services.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace GoodRead.Api.Test.Base
+namespace GoodRead.Services.Test.Base
 {
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
@@ -20,6 +25,13 @@ namespace GoodRead.Api.Test.Base
                 {
                     options.UseInMemoryDatabase("GoodReadDb");
                 });
+
+                services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+                services.AddScoped<IBookRepository, BookRepository>();
+                services.AddScoped<IUserReadRepository, UserReadRepository>();
+                services.AddScoped<IUserRepository, UserRepository>();
+                services.AddAutoMapper(Assembly.GetExecutingAssembly());
+                services.AddScoped<IBookService, BookService>();
 
                 var sp = services.BuildServiceProvider();
 

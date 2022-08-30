@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GoodRead.Api.Test.Base;
 using GoodRead.Services.Models.Book;
+using GoodRead.Utilities.Responses;
 using Newtonsoft.Json;
-using Xunit;
 
 namespace GoodRead.Api.Test.Controller
 {
@@ -20,20 +20,88 @@ namespace GoodRead.Api.Test.Controller
         }
 
         [Fact]
-        public async Task ReturnsSuccessResult()
+        public async Task GetBpoks()
         {
             var client = _factory.GetAnonymousClient();
 
-            var response = await client.GetAsync("/api/category");
+            var response = await client.GetAsync("/api/Books");
 
             response.EnsureSuccessStatusCode();
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            var result = JsonConvert.DeserializeObject<List<BookDto>>(responseString);
+            var result = JsonConvert.DeserializeObject<BaseResponse<List<BookDto>>>(responseString);
 
-            Assert.IsType<List<BookDto>>(result);
-            Assert.NotEmpty(result);
+            Assert.IsType<List<BookDto>>(result?.Results);
+            Assert.NotEmpty(result.Results);
+        }
+
+        [Fact]
+        public async Task GetBooksByName()
+        {
+            var client = _factory.GetAnonymousClient();
+
+            var response = await client.GetAsync("get-books-by-name/na");
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<BaseResponse<List<BookDto>>>(responseString);
+
+            Assert.IsType<List<BookDto>>(result?.Results);
+            Assert.NotEmpty(result.Results);
+        }
+
+        [Fact]
+        public async Task GetCompletedReadingBooks()
+        {
+            var client = _factory.GetAnonymousClient();
+
+            var response = await client.GetAsync("/api/Books/get-completed-reading-book/1");
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<BaseResponse<List<BookDto>>>(responseString);
+
+            Assert.IsType<List<BookDto>>(result?.Results);
+            Assert.NotEmpty(result.Results);
+        }
+
+        [Fact]
+        public async Task CreateUserReadBook()
+        {
+            var client = _factory.GetAnonymousClient();
+
+            var response = await client.GetAsync("/api/Books/create-user-read-book");
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<BaseResponse<List<BookDto>>>(responseString);
+
+            Assert.IsType<List<BookDto>>(result?.Results);
+            Assert.NotEmpty(result.Results);
+        }
+
+        [Fact]
+        public async Task UpdateBookStatus()
+        {
+            var client = _factory.GetAnonymousClient();
+
+            var response = await client.GetAsync("/api/Books/update-book-status/1");
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<BaseResponse<List<BookDto>>>(responseString);
+
+            Assert.IsType<List<BookDto>>(result?.Results);
+            Assert.NotEmpty(result.Results);
         }
 
     }

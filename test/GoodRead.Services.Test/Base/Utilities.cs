@@ -1,7 +1,7 @@
 ﻿using GoodRead.Domain.Context;
 using GoodRead.Domain.Entities;
 
-namespace GoodRead.Api.Test.Base
+namespace GoodRead.Services.Test.Base
 {
     public class Utilities
     {

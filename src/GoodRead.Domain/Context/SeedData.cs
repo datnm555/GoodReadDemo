@@ -10,7 +10,7 @@ public class SeedData
         {
             var user = new User
             {
-                Name = "User1",
+                Name = "TestUser",
                 CreatedBy = "Admin",
                 CreatedDate = DateTime.Now
 
@@ -24,19 +24,19 @@ public class SeedData
             {
                 new()
                 {
-                    Name = "Book1",
+                    Name = "Connan",
                     CreatedBy = "Admin",
                     CreatedDate = DateTime.Now
                 },
                 new()
                 {
-                    Name = "Book2",
+                    Name = "Doremon",
                     CreatedBy = "Admin",
                     CreatedDate = DateTime.Now
                 },
                 new()
                 {
-                    Name = "Book3",
+                    Name = "Harry Potter",
                     CreatedBy = "Admin",
                     CreatedDate = DateTime.Now
                 }
