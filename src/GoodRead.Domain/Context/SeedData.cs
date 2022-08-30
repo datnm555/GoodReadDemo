@@ -1,47 +1,49 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoodRead.Domain.Context;
 
-public static class SeedData
+public class SeedData
 {
-    public static void AddDataInMemory(WebApplication app)
+    public static void AddDataInMemory(ApplicationDbContext context)
     {
-        var scope = app.Services.CreateScope();
-        var db = scope.ServiceProvider.GetService<ApplicationDbContext>();
-
-        var user = new User()
+        if (!context.Users.Any())
         {
-            Name = "User1",
-            CreatedBy = "Admin",
-            CreatedDate = DateTime.Now
-            
-        };
-        db.Users.Add(user);
+            var user = new User
+            {
+                Name = "User1",
+                CreatedBy = "Admin",
+                CreatedDate = DateTime.Now
 
-        var books = new List<Book>()
+            };
+            context.Users.Add(user);
+        }
+
+        if (!context.Books.Any())
         {
-            new Book()
+            var books = new List<Book>
             {
-                Name = "Book1",
-                CreatedBy = "Admin",
-                CreatedDate = DateTime.Now
-            },
-            new Book()
-            {
-                Name = "Book2",
-                CreatedBy = "Admin",
-                CreatedDate = DateTime.Now
-            },
-            new Book()
-            {
-                Name = "Book3",
-                CreatedBy = "Admin",
-                CreatedDate = DateTime.Now
-            }
-        };
-        db.Books.AddRange(books);
+                new()
+                {
+                    Name = "Book1",
+                    CreatedBy = "Admin",
+                    CreatedDate = DateTime.Now
+                },
+                new()
+                {
+                    Name = "Book2",
+                    CreatedBy = "Admin",
+                    CreatedDate = DateTime.Now
+                },
+                new()
+                {
+                    Name = "Book3",
+                    CreatedBy = "Admin",
+                    CreatedDate = DateTime.Now
+                }
+            };
+            context.Books.AddRange(books);
 
-        db.SaveChanges();
+        }
+        context.SaveChanges();
     }
 }

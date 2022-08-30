@@ -11,16 +11,22 @@ public class BaseResponse<T>
 {
     public BaseResponse(T results)
     {
-        Results = results;
         Success = true;
         StatusCode = (int)HttpStatusCode.OK;
+        Results = results;
     }
 
-    public BaseResponse(bool success, string message, T results)
+    public BaseResponse(bool success,HttpStatusCode statusCode, string message)
     {
         Success = success;
+        StatusCode = (int) statusCode;
         Message = message;
-        Results = results;
+    }
+
+    public BaseResponse(bool success, HttpStatusCode statusCode)
+    {
+        Success = success;
+        StatusCode = (int)statusCode;
     }
 
     public BaseResponse(T results, string message = null)

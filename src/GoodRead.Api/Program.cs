@@ -1,6 +1,6 @@
 using GoodRead.Domain;
 using GoodRead.Domain.Context;
-var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,15 +27,20 @@ builder.Services.AddSwaggerGen(configs =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name:MyAllowSpecificOrigins,
-        policy  =>
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
         {
             policy.AllowAnyOrigin().WithHeaders().AllowAnyMethod();
         });
 });
 
 var app = builder.Build();
-SeedData.AddDataInMemory(app);
+
+//using var scope = app.Services.CreateScope();
+//var service = scope.ServiceProvider;
+//var context = service.GetRequiredService<ApplicationDbContext>();
+//SeedData.AddDataInMemory(context);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

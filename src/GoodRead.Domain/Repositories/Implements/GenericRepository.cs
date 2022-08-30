@@ -36,6 +36,40 @@ public class GenericRepository<T> : IDisposable, IGenericRepository<T> where T :
         return query;
     }
 
+    public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>>? filter, bool tracking = true)
+    {
+        var query = DbSet.AsQueryable();
+
+        if (!tracking)
+        {
+            query = query.AsNoTracking();
+        }
+
+        if (filter != null)
+        {
+            query = query.Where(filter);
+        }
+
+        return await query.FirstOrDefaultAsync();
+    }
+
+    public async Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>>? filter, bool tracking = true)
+    {
+        var query = DbSet.AsQueryable();
+
+        if (!tracking)
+        {
+            query = query.AsNoTracking();
+        }
+
+        if (filter != null)
+        {
+            query = query.Where(filter);
+        }
+
+        return await query.SingleOrDefaultAsync() ?? throw new InvalidOperationException();
+    }
+
     public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>>? filter = null, string includeProperties = "")
     {
         IQueryable<T> query = DbSet;

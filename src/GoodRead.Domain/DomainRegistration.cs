@@ -19,13 +19,14 @@ namespace GoodRead.Domain
         {
             services.AddDbContext<ApplicationDbContext>(configs =>
             {
-                // configs.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                configs.UseInMemoryDatabase("GoodReadDb");
+                configs.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                //configs.UseInMemoryDatabase("GoodReadDb");
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IUserReadRepository, UserReadRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

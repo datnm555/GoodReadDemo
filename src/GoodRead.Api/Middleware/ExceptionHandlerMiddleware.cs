@@ -1,4 +1,6 @@
-﻿namespace GoodRead.Api.Middleware;
+﻿using GoodRead.Utilities.Responses;
+
+namespace GoodRead.Api.Middleware;
 
 public class ExceptionHandlerMiddleware
 {
@@ -17,37 +19,36 @@ public class ExceptionHandlerMiddleware
         }
         catch (Exception ex)
         {
-            await ConvertException(context, ex);
+            await HandleExceptionAsync(context, ex);
         }
     }
 
-    private Task ConvertException(HttpContext context, Exception exception)
+    private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
-        context.Request.ContentType = "application/json";
-        var result = string.Empty;
+        var httpStatusCode = HttpStatusCode.InternalServerError;
+        context.Response.ContentType = "application/json";
+        var errors = new List<string>();
 
         switch (exception)
         {
             case BadRequestException:
                 httpStatusCode = HttpStatusCode.BadRequest;
-                result = exception.Message;
+                errors.Add(exception.Message);
                 break;
             case NotFoundException:
                 httpStatusCode = HttpStatusCode.NotFound;
                 break;
-
             case ValidationException:
                 httpStatusCode = HttpStatusCode.BadRequest;
                 //result = JsonConvert.SerializeObject(validationException.ValdationErrors);
                 break;
+            default:
+                errors.Add(exception.Message);
+                break;
         }
 
         context.Response.StatusCode = (int)httpStatusCode;
-        if (result == string.Empty)
-        {
-            result = JsonConvert.SerializeObject(new { error = exception.Message });
-        }
+        var result = JsonConvert.SerializeObject(new ErrorResponse<IActionResult>(false, httpStatusCode, errors));
 
         return context.Response.WriteAsync(result);
     }
